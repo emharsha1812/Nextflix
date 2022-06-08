@@ -6,6 +6,8 @@ import { baseUrl } from '../constants/movie'
 import { Movie } from '../typings'
 import { FaPlay } from 'react-icons/fa'
 import { RiInformationLine } from 'react-icons/ri'
+import { useRecoilState } from 'recoil'
+import { modalState, movieState } from '../atoms/modalAtom'
 interface Props {
   netflixOriginals: Movie[]
 }
@@ -19,6 +21,8 @@ const Banner = ({ netflixOriginals }: Props) => {
     )
   }, [netflixOriginals])
 
+  const [showModal, setShowModal] = useRecoilState(modalState)
+  const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
   return (
     <div className="flex flex-col justify-start  space-y-2 py-16 px-2 md:space-y-4 lg:h-[65vh] lg:justify-end">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen">
@@ -41,7 +45,13 @@ const Banner = ({ netflixOriginals }: Props) => {
           <FaPlay className="h-4 w-4 md:h-8 md:w-8 " />
           Play
         </button>
-        <button className="bannerButton bg-gray-500/70">
+        <button
+          className="bannerButton bg-gray-500/70"
+          onClick={() => {
+            setCurrentMovie(movie)
+            setShowModal(true)
+          }}
+        >
           <RiInformationLine className="h-5 w-5 md:h-8 md:w-8" />
           More Info
         </button>
