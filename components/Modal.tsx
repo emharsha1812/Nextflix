@@ -120,7 +120,6 @@ const Modal = () => {
               <div className="spacce-y-3 flex flex-col text-sm">
                 <div className="text-lg text-white">
                   <span className="text-lg text-gray-500">Genres: </span>
-                  {genres?.map((genre) => genre.name).join(', ')}
                 </div>
                 <div className=" text-white ">
                   <span className="text-lg text-gray-500">
